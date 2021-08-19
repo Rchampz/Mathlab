@@ -1,0 +1,30 @@
+% Membaca gambar mana yang akan diproses
+im = 'DATASET12.jpg'; 
+I = imread(im);
+
+% membuka gambar asli (Opening)
+SE= strel('square',3);
+Iopen = imopen(I,SE)
+subplot(1,3,1);
+imshow(Iopen,[]);
+title('original image')
+
+% Pengolahan gambar menjadi hitam dan putih atau Binerisasi
+Igray = im2bw(Iopen,graythresh(Iopen));
+subplot(1,3,2)
+imshow(Igray,[]);
+title('BInerisasi');
+
+% Pengolahan gambar Menghilangkan noise
+Igray =bwareaopen(Igray,100);
+subplot(1,3,3);
+imshow(Igray,[]);
+title('Cleaned Binary Image');
+
+[labeledImage, numberOfObjects] = bwlabel(Igray);
+blobMeasurements = regionprops(labeledImage,...
+'Perimeter', 'Area', 'FilledArea', 'Solidity', 'Centroid','MajorAxisLength','MinorAxisLength');
+
+% Pengolahan gambar dengan mengisi lubang dalam objek (filling)
+filledImage = imfill (Igray, 'holes');
+boundaries = bwboundaries(filledImage);
