@@ -16,7 +16,6 @@ program untuk pengolahan citra atau gambar atau image processing yang digunakan 
                           else
                             Igray = Iopen
                           end*
-
       4. Binarize image
          Membuat angka RGB dalam format binari u tuk pemrosesan selanjutnya
       5. Menghilangkan noise
