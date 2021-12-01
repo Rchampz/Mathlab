@@ -2,7 +2,7 @@ clc;
 clear all;
 workspace;
 
-im = 'pos22_CO.jpg';
+im = 'pos22_CO.jpg'; %% Nama image
 
 %%CROP
 I = imread(im);
